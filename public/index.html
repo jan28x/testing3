@@ -7,50 +7,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-      
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-          apiKey: "AIzaSyA-lV_XkGKs7I_xW36iGsHPP2j3H6DVWW0",
-          authDomain: "testing-1b116.firebaseapp.com",
-          projectId: "testing-1b116",
-          storageBucket: "testing-1b116.firebasestorage.app",
-          messagingSenderId: "43071950569",
-          appId: "1:43071950569:web:4a7f527969efd69e222a78"
-        };
-      
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-
-        const analytics = getAnalytics(app);
-        function showPage(pageId) {
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(page => page.style.display = 'none');
-            // Show the selected page
-            document.getElementById(pageId).style.display = 'block';
-
-            // Update active state in sidebar
-            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-            document.querySelector(`[data-page="${pageId}"]`).classList.add('active');
-
-            // Show or hide the search bar based on the active page
-            const searchBar = document.getElementById('search-bar');
-            if (pageId === 'upcoming-events' || pageId === 'past-events') {
-                searchBar.style.display = 'block';
-            } else {
-                searchBar.style.display = 'none';
-            }
-        }
-
-        // Load the default page on startup
-        document.addEventListener("DOMContentLoaded", function() {
-            showPage('dashboard');
-        });
-    </script>
     <div class="container">
         <!-- Sidebar -->
         <aside class="sidebar">
@@ -144,5 +100,49 @@
             </section>
         </main>
     </div>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyA-lV_XkGKs7I_xW36iGsHPP2j3H6DVWW0",
+          authDomain: "testing-1b116.firebaseapp.com",
+          projectId: "testing-1b116",
+          storageBucket: "testing-1b116.firebasestorage.app",
+          messagingSenderId: "43071950569",
+          appId: "1:43071950569:web:4a7f527969efd69e222a78"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        const analytics = getAnalytics(app);
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => page.style.display = 'none');
+            // Show the selected page
+            document.getElementById(pageId).style.display = 'block';
+
+            // Update active state in sidebar
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            document.querySelector(`[data-page="${pageId}"]`).classList.add('active');
+
+            // Show or hide the search bar based on the active page
+            const searchBar = document.getElementById('search-bar');
+            if (pageId === 'upcoming-events' || pageId === 'past-events') {
+                searchBar.style.display = 'block';
+            } else {
+                searchBar.style.display = 'none';
+            }
+        }
+
+        // Load the default page on startup
+        document.addEventListener("DOMContentLoaded", function() {
+            showPage('dashboard');
+        });
+    </script>
 </body>
 </html>
