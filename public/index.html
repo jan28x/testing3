@@ -1,89 +1,148 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyA-lV_XkGKs7I_xW36iGsHPP2j3H6DVWW0",
+          authDomain: "testing-1b116.firebaseapp.com",
+          projectId: "testing-1b116",
+          storageBucket: "testing-1b116.firebasestorage.app",
+          messagingSenderId: "43071950569",
+          appId: "1:43071950569:web:4a7f527969efd69e222a78"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/11.0.2/firebase-app-compat.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/11.0.2/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/11.0.2/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/11.0.2/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/11.0.2/firebase-functions-compat.js"></script>
-    <script defer src="/__/firebase/11.0.2/firebase-messaging-compat.js"></script>
-    <script defer src="/__/firebase/11.0.2/firebase-storage-compat.js"></script>
-    <script defer src="/__/firebase/11.0.2/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/11.0.2/firebase-remote-config-compat.js"></script>
-    <script defer src="/__/firebase/11.0.2/firebase-performance-compat.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+        const analytics = getAnalytics(app);
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => page.style.display = 'none');
+            // Show the selected page
+            document.getElementById(pageId).style.display = 'block';
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
-    </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+            // Update active state in sidebar
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            document.querySelector(`[data-page="${pageId}"]`).classList.add('active');
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+            // Show or hide the search bar based on the active page
+            const searchBar = document.getElementById('search-bar');
+            if (pageId === 'upcoming-events' || pageId === 'past-events') {
+                searchBar.style.display = 'block';
+            } else {
+                searchBar.style.display = 'none';
+            }
         }
-      });
+
+        // Load the default page on startup
+        document.addEventListener("DOMContentLoaded", function() {
+            showPage('dashboard');
+        });
     </script>
-  </body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">Event Logo</div>
+            <nav class="nav-menu">
+                <button class="nav-item active" data-page="dashboard" onclick="showPage('dashboard')">Dashboard</button>
+                <button class="nav-item" data-page="upcoming-events" onclick="showPage('upcoming-events')">Upcoming Events</button>
+                <button class="nav-item" data-page="past-events" onclick="showPage('past-events')">Past Events</button>
+                <button class="nav-item" data-page="messages" onclick="showPage('messages')">Messages</button>
+                <button class="nav-item" data-page="profile" onclick="showPage('profile')">Profile</button>
+            </nav>
+            <div class="bottom-menu">
+                <button class="nav-item" data-page="settings" onclick="showPage('settings')">Settings</button>
+                <button class="nav-item" data-page="logout" onclick="showPage('logout')">Log Out</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="header">
+                <h1>Dashboard</h1>
+                
+                <!-- Search Bar (Hidden by default) -->
+                <input type="text" placeholder="Search Events" id="search-bar" class="search-bar" style="display: none;">
+
+                <div class="profile-info">
+                    <div class="profile-text">
+                        <p class="profile-name">Alex Pereira</p>
+                        <p class="profile-email">alexpereira@ufc.com</p>
+                    </div>
+                    <div class="profile-pic">AP</div>
+                </div>
+            </header>
+
+            <!-- Dashboard Page -->
+            <section id="dashboard" class="page">
+                <h2>Dashboard</h2>
+                <div class="cards-container">
+                    <div class="card">Event Overview</div>
+                    <div class="card">Statistics</div>
+                    <div class="card">Recent Activity</div>
+                </div>
+            </section>
+
+            <!-- Upcoming Events Page -->
+            <section id="upcoming-events" class="page" style="display: none;">
+                <h2>Upcoming Events</h2>
+                <div class="cards-container">
+                    <div class="card">Event 1</div>
+                    <div class="card">Event 2</div>
+                    <div class="card">Event 3</div>
+                </div>
+            </section>
+
+            <!-- Past Events Page -->
+            <section id="past-events" class="page" style="display: none;">
+                <h2>Past Events</h2>
+                <div class="cards-container">
+                    <div class="card">Event 4</div>
+                    <div class="card">Event 5</div>
+                </div>
+            </section>
+
+            <!-- Messages Page -->
+            <section id="messages" class="page" style="display: none;">
+                <h2>Messages</h2>
+                <div class="cards-container">
+                    <div class="card">Message 1</div>
+                    <div class="card">Message 2</div>
+                </div>
+            </section>
+
+            <!-- Profile Page -->
+            <section id="profile" class="page" style="display: none;">
+                <h2>Profile</h2>
+                <p>Name: Alex Pereira</p>
+                <p>Email: alexpereira@ufc.com</p>
+                <p>Member Since: January 2023</p>
+            </section>
+
+            <!-- Settings Page -->
+            <section id="settings" class="page" style="display: none;">
+                <h2>Settings</h2>
+                <p>Configure your account settings here.</p>
+            </section>
+
+            <!-- Log Out Page -->
+            <section id="logout" class="page" style="display: none;">
+                <h2>Log Out</h2>
+                <p>You have successfully logged out.</p>
+            </section>
+        </main>
+    </div>
+</body>
 </html>
